@@ -36,7 +36,20 @@ public class FlightBookingPage extends BasePage{
 	//input[@name="findFlights"]
 	//td[@class="frame_action_xrows"]/input[@name="outFlight"]
 	//td[@class="frame_action_xrows"]/input[@name="outFlight"][@value="Unified Airlines$363$281$11:24"]
-	
+	//td[@class="frame_action_xrows"]/input[@name="inFlight"][@value="Unified Airlines$633$303$18:44"]
+	//table[@bgcolor="ffffff"]/tbody/tr[3]/td[3] price check
+	//table[@bgcolor="ffffff"]/tbody/tr[6]/td[3] return price check
+	//input[@name="passFirst0"] first passenger
+	//input[@name="passLast0"] last passenger
+	//select[@name="pass.0.meal"]
+	//input[@name="cc_frst_name"]
+	//input[@name="creditnumber"]
+	//input[@name="cc_mid_name"]
+	//input[@name="cc_last_name"]
+	//input[@name="billAddress1"]
+	//input[@name="billAddress2"]
+	//input[@name="billCity"]
+	//input[@name="billState"]
 	
 	@FindBy(xpath = "//*[contains(text(),'Flights')]")
 	public WebElement flightButton;
