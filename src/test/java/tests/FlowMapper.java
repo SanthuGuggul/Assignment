@@ -12,9 +12,6 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-import javax.security.auth.login.ConfigurationSpi;
-
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.WebDriver;
@@ -35,7 +32,8 @@ public class FlowMapper {
 	private Map<String, String> usrData;
 	private Object obj;
 	private String errMsg;
-	private String testCaseID = "";
+	public String testCaseID = "";
+	public String TCID="";
 	private String stepNo = "";
 	private String className = "";
 	private String currentPackage = "";
@@ -47,7 +45,7 @@ public class FlowMapper {
 	@BeforeSuite
 	public void generateIniFile() throws Exception {
 		javaUtils.readConfigProperties();
-
+		
 	
 
 	}
@@ -59,6 +57,9 @@ public class FlowMapper {
 			return;
 		}
 		System.out.println("Excuting flow: " + usrData.get("TCID"));
+	
+		
+		System.out.println("Test flow: "+usrData.get("DESCRIPTION"));
 		for (String flowTestID : flows) {
 			System.out.println(flowTestID);
 			if ((!usrData.get(flowTestID).toLowerCase().contains("skip")) && (!usrData.get(flowTestID).isEmpty())) {
@@ -97,7 +98,7 @@ public class FlowMapper {
 							HashMap<String, String> data = javaUtils.readExcelData(workbook, sheetname,
 									usrData.get(flowTestID));
 
-						
+							
 							Field webDriver = obj.getClass().getDeclaredField("wdriver");
 
 							webDriver.set(obj, wdriver);
@@ -146,26 +147,13 @@ public class FlowMapper {
 		return data;
 	}
 
-	/*
-	 * @AfterClass public void killDriver() {
-	 * 
-	 * if (wdriver != null) { wBasePage.closeBrowser(); } }
-	 */
 
-	// STORING EXECUTION RESULTS IN EXCEL
 	@AfterMethod
 	public void result(ITestResult result) throws InvalidFormatException, IOException {
 		if (!previouseFailed) {
-			String failureReason = "";
-			String flowName = "MEL END TO END FLOW";
 			
 			wBasePage.captureScreenshotOnFailedTest(result, testCaseID);
-			if (!result.isSuccess()) {
-				failureReason = errMsg;
-				failureReason = "Failed in: " + stepNo + ": " + testCaseID + ": " + result.getThrowable() + "";
-			}
-			
-
+	        
 			if (!result.isSuccess()) {
 				System.out.println("Failure Occured in Test");
 				previouseFailed = true;
@@ -174,4 +162,6 @@ public class FlowMapper {
 
 		}
 	}
+	
+	
 }

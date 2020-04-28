@@ -1,5 +1,6 @@
 package tests.ui;
 
+import java.awt.AWTException;
 import java.util.HashMap;
 
 import org.openqa.selenium.WebDriver;
@@ -19,7 +20,7 @@ public class FlightBookingPageTest {
 	
 	
 	@Test
-	public void signInPageTest(HashMap<String,String> usrData) {
+	public void flightBookingPageTest(HashMap<String,String> usrData) throws InterruptedException, AWTException {
 	
 		System.out.println("LAUNCHING THE WEB APP FOR FLOW : " + usrData.get("TCID"));
 		if (wdriver == null) {
@@ -32,6 +33,8 @@ public class FlightBookingPageTest {
 		}
 		
 		flightBookingPage=new FlightBookingPage(wdriver);
+		flightBookingPage.flightBookingPageTest(usrData);
+		
 	
 	}
 	

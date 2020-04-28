@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="Suite">
+	
+<test thread-count="5" name="Test" preserve-order="true">
+
+		<listeners>
+		
+			<listener class-name="tests.ExtentReporterNG">
+			
+			</listener>
+		</listeners>
+
+
+
+		<classes>
+
+			<class name="tests.FlowMapper"/>
+
+		</classes>
+
+		<!-- <class name="tests.ui.SignInPageTest"/> <class name="tests.ui.FlightBookingPageTest"/> 
+			<class name="tests.ui.RegisterPageTest"/> -->
+
+
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
